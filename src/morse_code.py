@@ -75,7 +75,7 @@ CHAR_TO_MORSE_DICT = {
     '0': '-----'
 }
 
-def char_to_morse(text):
+def text_to_morse(text):
 
     """
     Takes a string of text and return morse code string.
@@ -86,14 +86,18 @@ def char_to_morse(text):
 
     morse_code_list = []
 
-    for char in text:
-        
-        if char in CHAR_TO_MORSE_DICT.keys():
-            morse_code_list.append(CHAR_TO_MORSE_DICT[char])
-            morse_code_list.append(" ")
+    words = text.split(" ")
 
-        elif char == " ":
-            morse_code_list.append(" ")
+    for idx, word in enumerate(words):
+
+        for char in word:
+
+            if char in CHAR_TO_MORSE_DICT.keys():
+                morse_code_list.append(CHAR_TO_MORSE_DICT[char])
+                morse_code_list.append(" ")
+
+        # Word separator
+        morse_code_list.append("/ ")
     
     morse_code_str = ''.join(morse_code_list)
     
@@ -119,7 +123,11 @@ def morse_to_char(morse_code_str):
     return ''.join(text)
 
 def main():
-    pass
+    text = "Arajdian Altaf"
+
+    result = text_to_morse(text)
+
+    print(result)
             
 
 if __name__ == "__main__":
