@@ -1,0 +1,2 @@
+# Python Morse Code Translator
+This is a Python script that can be used to convert text into Morse code and vice versa. It can be useful for learning Morse code, sending secret messages, or just for fun.
