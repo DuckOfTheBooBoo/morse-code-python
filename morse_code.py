@@ -75,3 +75,13 @@ CHAR_TO_MORSE = {
     '0': '-----'
 }
 
+def main():
+    text = "Nama Saya Arajdian Altaf."
+
+    for char in text:
+        
+        if char in CHAR_TO_MORSE.keys():
+            
+
+if __name__ == "__main__":
+    main()
