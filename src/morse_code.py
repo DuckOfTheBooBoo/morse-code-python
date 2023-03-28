@@ -1,5 +1,3 @@
-from time import sleep
-
 MORSE_TO_CHAR_DICT = {
     '.-': 'a',
     '-...': 'b',
@@ -79,6 +77,10 @@ CHAR_TO_MORSE_DICT = {
 
 def char_to_morse(text):
 
+    """
+    Takes a string of text and return morse code string.
+    """
+
     if any(ch.isupper() for ch in text):
         text = text.lower()
 
@@ -86,25 +88,30 @@ def char_to_morse(text):
 
     for char in text:
         
-        if char in CHAR_TO_MORSE.keys():
-            morse_code.append(CHAR_TO_MORSE[char])
-            morse_code.append(" ")
+        if char in CHAR_TO_MORSE_DICT.keys():
+            morse_code_list.append(CHAR_TO_MORSE_DICT[char])
+            morse_code_list.append(" ")
 
         elif char == " ":
-            morse_code.append(" ")
+            morse_code_list.append(" ")
     
-    morse_code_str = ''.join(morse_code)
+    morse_code_str = ''.join(morse_code_list)
     
     return morse_code_str
 
 
 def morse_to_char(morse_code_str):
+
+    """
+    Takes a morse code string and return to string text.
+    """
+
     text = []
 
     for morse_code in morse_code_str:
 
-        if morse_code in MORSE_TO_CHAR.keys():
-            text.append(MORSE_TO_CHAR[m_code])
+        if morse_code in MORSE_TO_CHAR_DICT.keys():
+            text.append(MORSE_TO_CHAR_DICT[morse_code])
         
         elif morse_code == "":
             text.append(" ")
