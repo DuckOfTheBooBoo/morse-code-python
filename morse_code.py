@@ -1,3 +1,5 @@
+from time import sleep
+
 MORSE_TO_CHAR = {
     '.-': 'a',
     '-...': 'b',
@@ -75,12 +77,41 @@ CHAR_TO_MORSE = {
     '0': '-----'
 }
 
-def main():
-    text = "Nama Saya Arajdian Altaf."
+def char_to_morse(text):
+
+    if any(ch.isupper() for ch in text):
+        text = text.lower()
+
+    morse_code = []
 
     for char in text:
         
         if char in CHAR_TO_MORSE.keys():
+            morse_code.append(CHAR_TO_MORSE[char])
+            morse_code.append(" ")
+
+        elif char == " ":
+            morse_code.append(" ")
+    
+    morse_code = ''.join(morse_code)
+
+
+def morse_to_char(morse_code):
+    text = []
+
+    for m_code in morse_code:
+
+        if m_code in MORSE_TO_CHAR.keys():
+            text.append(MORSE_TO_CHAR[m_code])
+        
+        elif m_code == "":
+            text.append(" ")
+    
+
+    print(''.join(text))
+
+def main():
+    pass
             
 
 if __name__ == "__main__":
