@@ -116,9 +116,8 @@ def morse_to_text(morse_code_str):
     morse_words = morse_code_str.split("/ ")
 
 
-    for morse_word in morse_words:
+    for idx, morse_word in enumerate(morse_words):
 
-        print(morse_word)
         morse_letter = morse_word.split(" ")
 
         for morse_code in morse_letter:
@@ -126,12 +125,18 @@ def morse_to_text(morse_code_str):
             if morse_code in MORSE_TO_CHAR_DICT.keys():
                 text.append(MORSE_TO_CHAR_DICT[morse_code])
         
-        text.append(" ")
+        if idx != len(morse_words) - 1:
+            text.append(" ")
+        
     
     return ''.join(text)
 
 def main():
-    pass    
+    text = "hello world"
+
+    result = text_to_morse(text)
+
+    print(result)
 
 if __name__ == "__main__":
     main()

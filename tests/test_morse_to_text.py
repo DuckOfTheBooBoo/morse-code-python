@@ -1,3 +1,5 @@
+from src.morse_code import text_to_morse, morse_to_text
+
 """
 TODO:
 - Test that the second function can correctly convert a simple Morse code string to a text string.
