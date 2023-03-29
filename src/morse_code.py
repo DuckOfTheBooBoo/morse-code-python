@@ -1,3 +1,5 @@
+from time import sleep
+
 MORSE_TO_CHAR_DICT = {
     '.-': 'a',
     '-...': 'b',
@@ -78,7 +80,7 @@ CHAR_TO_MORSE_DICT = {
 def text_to_morse(text):
 
     """
-    Takes a string of text and return morse code string.
+    Takes a string of text and return a morse code string.
     """
 
     if any(ch.isupper() for ch in text):
@@ -88,22 +90,22 @@ def text_to_morse(text):
 
     words = text.split(" ")
 
-    for idx, word in enumerate(words):
-
-        for char in word:
+    for word_index, word in enumerate(words):
+        for char_index, char in enumerate(word):
 
             if char in CHAR_TO_MORSE_DICT.keys():
                 morse_code_list.append(CHAR_TO_MORSE_DICT[char])
                 morse_code_list.append(" ")
 
-        if not idx == len(words) - 1:
-            # Word separator
-            morse_code_list.append("/ ")
-    
-    morse_code_str = ''.join(morse_code_list)
-    
-    return morse_code_str
+            if char_index == len(word) - 1 and word_index != len(words) - 1:
+                morse_code_list.append("/ ")
 
+    # Remove trailing whitespace
+    morse_code_list.pop()
+
+    morse_code_str = ''.join(morse_code_list)
+
+    return morse_code_str
 
 def morse_to_text(morse_code_str):
 
@@ -128,15 +130,15 @@ def morse_to_text(morse_code_str):
         if idx != len(morse_words) - 1:
             text.append(" ")
         
-    
     return ''.join(text)
 
 def main():
     text = "hello world"
+    morse = text_to_morse(text)
+    # new_text = morse_to_text(morse)
 
-    result = text_to_morse(text)
-
-    print(result)
+    with open("out.txt", "w") as file:
+        file.writelines(morse)
 
 if __name__ == "__main__":
     main()
