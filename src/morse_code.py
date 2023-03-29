@@ -83,29 +83,34 @@ def text_to_morse(text):
     Takes a string of text and return a morse code string.
     """
 
-    if any(ch.isupper() for ch in text):
-        text = text.lower()
+    if text:
 
-    morse_code_list = []
+        if any(ch.isupper() for ch in text):
+            text = text.lower()
 
-    words = text.split(" ")
+        morse_code_list = []
 
-    for word_index, word in enumerate(words):
-        for char_index, char in enumerate(word):
+        words = text.split(" ")
 
-            if char in CHAR_TO_MORSE_DICT.keys():
-                morse_code_list.append(CHAR_TO_MORSE_DICT[char])
-                morse_code_list.append(" ")
+        for word_index, word in enumerate(words):
+            for char_index, char in enumerate(word):
 
-            if char_index == len(word) - 1 and word_index != len(words) - 1:
-                morse_code_list.append("/ ")
+                if char in CHAR_TO_MORSE_DICT.keys():
+                    morse_code_list.append(CHAR_TO_MORSE_DICT[char])
+                    morse_code_list.append(" ")
 
-    # Remove trailing whitespace
-    morse_code_list.pop()
+                if char_index == len(word) - 1 and word_index != len(words) - 1:
+                    morse_code_list.append("/ ")
 
-    morse_code_str = ''.join(morse_code_list)
+        # Remove trailing whitespace
+        morse_code_list.pop()
 
-    return morse_code_str
+        morse_code_str = ''.join(morse_code_list)
+
+        return morse_code_str
+
+    else:
+        return ""
 
 def morse_to_text(morse_code_str):
 
