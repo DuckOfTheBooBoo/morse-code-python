@@ -153,24 +153,31 @@ def morse_to_text(morse_code_str):
     Takes a morse code string and return to string text.
     """
 
-    text = []
+    if morse_code_str:
+        text = []
 
-    morse_words = morse_code_str.split("/ ")
+        morse_words = morse_code_str.split(" / ")
 
 
-    for idx, morse_word in enumerate(morse_words):
+        for idx, morse_word in enumerate(morse_words):
 
-        morse_letter = morse_word.split(" ")
+            morse_letter = morse_word.split(" ")
 
-        for morse_code in morse_letter:
+            for morse_code in morse_letter:
 
-            if morse_code in MORSE_TO_CHAR_DICT.keys():
-                text.append(MORSE_TO_CHAR_DICT[morse_code])
-        
-        if idx != len(morse_words) - 1:
-            text.append(" ")
-        
-    return ''.join(text)
+                if morse_code in MORSE_TO_CHAR_DICT.keys():
+                    text.append(MORSE_TO_CHAR_DICT[morse_code])
+                
+                else:
+                    raise ValueError
+            
+            if idx != len(morse_words) - 1:
+                text.append(" ")
+            
+        return ''.join(text)
+
+    else:
+        return ""
 
 def main():
     text = "hello world"
