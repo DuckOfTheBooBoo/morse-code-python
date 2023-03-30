@@ -1,4 +1,4 @@
-from time import sleep
+from src.morse_code_error import MorseCodeError
 
 MORSE_TO_CHAR_DICT = {
     '.-': 'A',
@@ -170,7 +170,10 @@ def morse_to_text(morse_code_str):
                 elif morse_code == "":
                     continue
                 
-            
+                else:
+                    raise MorseCodeError("INVALID MORSE CODE")
+
+                
             if idx != len(morse_words) - 1:
                 text.append(" ")
             

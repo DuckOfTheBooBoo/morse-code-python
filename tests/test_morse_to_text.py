@@ -1,4 +1,5 @@
 from src.morse_code import text_to_morse, morse_to_text
+from src.morse_code_error import MorseCodeError
 import pytest
 
 """
@@ -47,7 +48,7 @@ def test_invalid_morse_code():
     input_str = "... --- ... $"
     expected_output = "INVALID MORSE CODE"
 
-    with pytest.raises(ValueError):
+    with pytest.raises(MorseCodeError, match=expected_output):
         morse_to_text(input_str)
 
 def test_long_morse_code():
