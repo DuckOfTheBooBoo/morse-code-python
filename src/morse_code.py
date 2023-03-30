@@ -1,4 +1,4 @@
-from src.morse_code_error import MorseCodeError
+from morse_code_error import MorseCodeError
 
 MORSE_TO_CHAR_DICT = {
     '.-': 'A',
