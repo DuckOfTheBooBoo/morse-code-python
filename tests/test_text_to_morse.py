@@ -1,5 +1,5 @@
 import pytest
-from python_morse_code.src.morse_code import text_to_morse
+from src.morse_code import text_to_morse
 
 def test_simple_text():
 
