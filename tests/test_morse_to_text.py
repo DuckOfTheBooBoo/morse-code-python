@@ -1,6 +1,6 @@
-from src.morse_code import text_to_morse, morse_to_text
-from src.morse_code_error import MorseCodeError
 import pytest
+from python_morse_code.src.morse_code import morse_to_text
+from python_morse_code.src.morse_code_error import MorseCodeError
 
 """
 TODO:
