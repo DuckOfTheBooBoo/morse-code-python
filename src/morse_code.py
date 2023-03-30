@@ -181,15 +181,3 @@ def morse_to_text(morse_code_str):
 
     else:
         return ""
-
-def main():
-    text = "hello world"
-    morse = text_to_morse(text)
-    new_text = morse_to_text(morse)
-    print(new_text)
-
-    # with open("out.txt", "w") as file:
-    #     file.writelines(morse)
-
-if __name__ == "__main__":
-    main()
