@@ -162,14 +162,14 @@ def morse_to_text(morse_code_str):
         for idx, morse_word in enumerate(morse_words):
 
             morse_letter = morse_word.split(" ")
-
             for morse_code in morse_letter:
 
                 if morse_code in MORSE_TO_CHAR_DICT.keys():
                     text.append(MORSE_TO_CHAR_DICT[morse_code])
                 
-                else:
-                    raise ValueError
+                elif morse_code == "":
+                    continue
+                
             
             if idx != len(morse_words) - 1:
                 text.append(" ")
@@ -182,8 +182,8 @@ def morse_to_text(morse_code_str):
 def main():
     text = "hello world"
     morse = text_to_morse(text)
-    # new_text = morse_to_text(morse)
-    print(morse)
+    new_text = morse_to_text(morse)
+    print(new_text)
 
     # with open("out.txt", "w") as file:
     #     file.writelines(morse)
