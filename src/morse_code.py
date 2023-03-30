@@ -1,4 +1,4 @@
-from .morse_code_error import MorseCodeError
+from morse_code_error import MorseCodeError
 
 MORSE_TO_CHAR_DICT = {
     '.-': 'A',
@@ -144,8 +144,8 @@ def text_to_morse(text):
 
         return morse_code_str
 
-    else:
-        return ""
+    # Return empty string if text is empty
+    return ""
 
 def morse_to_text(morse_code_str):
 
