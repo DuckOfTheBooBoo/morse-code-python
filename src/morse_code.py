@@ -171,7 +171,7 @@ def morse_to_text(morse_code_str):
                     continue
                 
                 else:
-                    raise MorseCodeError("INVALID MORSE CODE")
+                    raise MorseCodeError(f"INVALID MORSE CODE: {morse_code}")
 
                 
             if idx != len(morse_words) - 1:
