@@ -1,4 +1,4 @@
-from morse_code_error import MorseCodeError
+from .morse_code_error import MorseCodeError, MorseCodeNotFound
 
 MORSE_TO_CHAR_DICT = {
     '.-': 'A',
@@ -116,7 +116,6 @@ CHAR_TO_MORSE_DICT = {
     ' ': '/'
 }
 
-
 def text_to_morse(text):
 
     """
@@ -136,6 +135,9 @@ def text_to_morse(text):
             if char in CHAR_TO_MORSE_DICT.keys():
                 morse_code_list.append(CHAR_TO_MORSE_DICT[char])
                 morse_code_list.append(" ")
+            
+            else:
+                raise MorseCodeNotFound(f"INVALID CHAR: {char}")
 
         # Remove trailing whitespace
         morse_code_list.pop()
