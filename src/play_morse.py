@@ -13,44 +13,44 @@ WORD_SPACE = AudioSegment.silent(duration=350)
 
 def play_morse(morse_code):
     
+    if morse_code:
+        morse_audio = AudioSegment.empty()
 
-    morse_audio = AudioSegment.empty()
+        audio_segment_visual = []
 
-    audio_segment_visual = []
+        if " / " in morse_code:
+            sequences = morse_code.split(" / ")
+        else:
+            sequences = [morse_code,]
 
-    if " / " in morse_code:
-        sequences = morse_code.split(" / ")
-    else:
-        sequences = [morse_code,]
+        for word_index, word in enumerate(sequences):
+            letters = word.split(" ")
 
-    for word_index, word in enumerate(sequences):
-        letters = word.split(" ")
-
-        for char in letters:
-            for symbol_index, symbol in enumerate(char):
-                
-                if symbol == ".":
-                    morse_audio += DOT
-                    audio_segment_visual.append("DOT")
-                elif symbol == "-":
-                    morse_audio += DASH
-                    audio_segment_visual.append("DASH")
-                
-                if symbol_index != len(char) - 1:
-                    # Add silence between characters
-                    morse_audio += INTRA_CHAR_SPACE
-                    audio_segment_visual.append("INTRA_CHAR_SPACE")
-                else:
-                    # Add silence between letters
-                    morse_audio += INTER_CHAR_SPACE
-                    audio_segment_visual.append("INTER_CHAR_SPACE")
-        
-        if word_index != len(sequences) - 1:
-            # Add silence between words
-            morse_audio += WORD_SPACE   
-            audio_segment_visual.append("WORD_SPACE")
+            for char in letters:
+                for symbol_index, symbol in enumerate(char):
+                    
+                    if symbol == ".":
+                        morse_audio += DOT
+                        audio_segment_visual.append("DOT")
+                    elif symbol == "-":
+                        morse_audio += DASH
+                        audio_segment_visual.append("DASH")
+                    
+                    if symbol_index != len(char) - 1:
+                        # Add silence between characters
+                        morse_audio += INTRA_CHAR_SPACE
+                        audio_segment_visual.append("INTRA_CHAR_SPACE")
+                    else:
+                        # Add silence between letters
+                        morse_audio += INTER_CHAR_SPACE
+                        audio_segment_visual.append("INTER_CHAR_SPACE")
             
-    return audio_segment_visual
+            if word_index != len(sequences) - 1:
+                # Add silence between words
+                morse_audio += WORD_SPACE   
+                audio_segment_visual.append("WORD_SPACE")
 
-if __name__ == "__main__":
-    pass
+        play(morse_audio)
+    
+    else:
+        pass
