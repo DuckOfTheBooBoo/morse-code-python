@@ -1,7 +1,6 @@
 from .morse_code import text_to_morse, morse_to_text
 from time import sleep
 from pydub import AudioSegment
-from pydub.playback import play
 from pydub.generators import Sine
 import os
 
@@ -50,7 +49,7 @@ def play_morse(morse_code):
                 morse_audio += WORD_SPACE   
                 audio_segment_visual.append("WORD_SPACE")
 
-        play(morse_audio)
+        return morse_audio
     
     else:
         pass

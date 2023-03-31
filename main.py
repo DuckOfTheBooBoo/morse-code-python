@@ -1,3 +1,5 @@
+from tkinter.filedialog import asksaveasfilename
+from pydub.playback import play
 from rich.console import Console
 from rich.prompt import Prompt, Confirm
 from src.morse_code import morse_to_text, text_to_morse
@@ -14,14 +16,28 @@ def main():
 
     if choice == "1":
         text = Prompt.ask(prompt="Text")
+        audio_file = None
 
         try:
             result = text_to_morse(text)
             console.print(result)
-            play_morse(result)
+            audio_file = play_morse(result)
+            play(audio_file)
+
         except MorseCodeNotFound as e:
             console.print("[red]Exception[/]", e)
-    
+
+        else:
+            ask_save = Confirm.ask(prompt="Save audio?")
+
+            if ask_save:
+                file = asksaveasfilename(initialfile="audio.wav", defaultextension=".wav", filetypes=[("Audio File", ".wav")])
+                
+                audio_file.export(file, format="wav")
+
+            else:
+                pass
+
     elif choice == "2":
         morse_code = Prompt.ask(prompt="Morse Code")
 
