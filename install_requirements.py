@@ -1,5 +1,7 @@
+from rich.console import Console
 import subprocess
 
+console = Console()
 def pip_install(package):
     subprocess.check_call(["pip", "install", package])
 
@@ -10,7 +12,9 @@ def install_requirements():
                 pip_install(line)
                 
     except subprocess.CalledProcessError:
-        print("Error installing requirements. Some packages may not be available. This maybe because your desktop doesn't have a GUI.")
+        console.print("Error installing requirements. Your device might missing portaudio and pyaudio.\nTry installing them with\n[bold white]sudo apt install portaudio19-dev python3-pyaudio[/]")
+
+
 
 if __name__ == "__main__":
     install_requirements()
