@@ -1,5 +1,5 @@
-from tkinter.filedialog import asksaveasfilename
-from _tkinter import TclError
+from pydub.playback import play
+from src.play_morse import play_morse
 from rich.console import Console
 from rich.prompt import Prompt, Confirm
 from src.morse_code import morse_to_text, text_to_morse
@@ -7,21 +7,17 @@ from src.morse_code_error import MorseCodeError, MorseCodeNotFound
 from os.path import join
 from os import getcwd
 
+
+
 # Constants
 console = Console()
 PYAUDIO_EXIST = None
 
 try:
-    import pyaudio
+    from tkinter.filedialog import asksaveasfilename
+    from _tkinter import TclError
 except ModuleNotFoundError:
-    console.print("[yellow]PyAudio is not installed. Morse code cannot be played.[/]")
-    PYAUDIO_EXIST = False
-
-else:
-    PYAUDIO_EXIST = True
-    from pydub.playback import play
-    from src.play_morse import play_morse
-
+    console.print("[yellow]tkinter is not installed.[/]") 
 
 def main():
     console.print("[green]Python Morse Code Translator[/]")
@@ -37,9 +33,11 @@ def main():
             result = text_to_morse(text)
             console.print(result)
 
-            if PYAUDIO_EXIST:
+            try:
                 audio_file = play_morse(result)
                 play(audio_file)
+            except OSError as e:
+                console.print(f"[red]{e}[/], [yellow]your device might don't have an audio device output.[/]")
 
         except MorseCodeNotFound as e:
             console.print("[red]Exception[/]", e)
