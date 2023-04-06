@@ -66,10 +66,10 @@ def input_text_to_morse():
                 play(audio_file)
 
             except OSError as os_error:
-                console.print(f"[red]{e}[/], [yellow]your device might don't have an audio device output.[/]")
+                console.print(f"[red]{os_error}[/], [yellow]your device might don't have an audio device output.[/]")
 
-        except MorseCodeNotFound as e:
-            console.print("[red]Exception[/]", e)
+        except MorseCodeNotFound as morse_error:
+            console.print("[red]Exception[/]", morse_error)
 
         else:
             ask_save = Confirm.ask(prompt="Save audio?")
@@ -85,8 +85,8 @@ def input_morse_to_text():
     try:
         result = morse_to_text(morse_code)
         console.print(result)
-    except MorseCodeError as e:
-        console.print("[red]Exception[/]", e)
+    except MorseCodeError as morse_error:
+        console.print("[red]Exception[/]", morse_error)
 
 def main():
     console.print("[green]Python Morse Code Translator[/]")
